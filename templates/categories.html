@@ -1,14 +1,16 @@
 {% extends "base.html" %}
-{% block title %}Categories{% endblock %}
+{% block title %}Animal Categories{% endblock %}
 
 {% block content %}
 <div class="row">
-    <h1>Categories</h1>
+    <div class="col-12">
+        <h1 class="text-center">Categories</h1>
+    </div>
 </div>
 <div class="row justify-content-center">
     {% for i in categories %}
-    <div class="col-12 list-group">
-        <li class="list-group-item">{{ i.name }}</li>
+    <div class="col-12 list-group text-center">
+        <a class="list-group-item list-group-item-action" href={{ url_for('showAnimals', category_id = i.id) }}>{{ i.name }}</a>
     </div>
     {% endfor %}
 </div>

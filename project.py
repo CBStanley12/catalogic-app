@@ -23,11 +23,19 @@ Base.metadata.bind = engine
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
 
+# Display categories
 @app.route('/')
 @app.route('/categories/')
 def showCategories():
     categories = session.query(Category).order_by(Category.name)
     return render_template('categories.html', categories = categories)
+
+# Display items in category
+@app.route('/categories/<int:category_id>/')
+def showAnimals(category_id):
+    category = session.query(Category).filter_by(id = category_id).one()
+    animals = session.query(Item).filter_by(category_id = category_id)
+    return render_template('animals.html', animals = animals, category = category)
 
 if __name__ == '__main__':
     # app.secret.key = 'super_secret_key'
