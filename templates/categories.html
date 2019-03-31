@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Categories{% endblock %}
+
+{% block content %}
+<div class="row">
+    <h1>Categories</h1>
+</div>
+<div class="row justify-content-center">
+    {% for i in categories %}
+    <div class="col-12 list-group">
+        <li class="list-group-item">{{ i.name }}</li>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

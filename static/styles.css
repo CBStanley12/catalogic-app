@@ -1,0 +1,23 @@
+html, body {
+    font-family: 'Libre Baskerville', sans-serif;
+    padding-top: 50px;
+    color: #343a40;
+    height: 100%;
+}
+
+#content { height: 90%; }
+
+nav { height: 10%; }
+
+nav .navbar-brand { font-size: 1.7em; }
+
+nav .btn { font-size: 1.1em; }
+
+.footer {
+    bottom: 0;
+    width: 100%;
+    margin-top: 20px;
+    height: 10%;
+    line-height: 50px;
+    background-color: #f5f5f5;
+}
