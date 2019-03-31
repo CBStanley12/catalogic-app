@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block title %}Animal Categories{% endblock %}
+
+{% block head %}
+<script>
+    function start() {
+        gapi.load('auth2', function() {
+            auth2 = gapi.auth2.init({
+                client_id: '784286001175-olnb45nusq6prlo906ttntq9nj3opmq8.apps.googleusercontent.com'
+            });
+        });
+    }
+</script>
+{% endblock %}
+
+{% block content %}
+<div id="signin">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="text-center">Sign in to continue.</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6 text-center">
+            <button id="signinGoogle" class="btn btn-dark"><i class="fab fa-google"></i>  Sign in With Google</button>
+        </div>
+        <div class="col-6 text-center">
+            <button id="signinTwitter" class="btn btn-dark"><i class="fab fa-twitter"></i>  Sign in with Twitter</button>
+        </div>
+    </div>
+</div>
+<div id="result" class="row"></div>
+{% endblock %}
+{% block script %}
+<script>
+    $(document).ready(function() {
+        $('#signinGoogle').click(function() {
+            function signInCallback(authResult) {
+                if (authResult['code']) {
+                    $('#signin').attr('style', 'display: none');
+                    $.ajax({
+                        type: 'POST',
+                        url: '/gconnect?state={{STATE}}',
+                        headers: {
+                            'X-Requested-With' : 'XMLHttpRequest'
+                        },
+                        contentType: 'application/octet-stream; charset=utf-8',
+                        success: function(result) {
+                            $('#result').html(`Login Successful!</br>${result}</br>Redirecting...`)
+                                setTimeout(function() {
+                                    window.location.href = "/categories/";
+                                }, 4000);
+                        },
+                        processData: false,
+                        data: authResult['code']
+                    });
+                } else {
+                    console.log(`There was an error: ${authResult['error']}`);
+                    $('#result').html(`Failed to make a server-side call. Check your configuration and console.`);
+                }
+            }
+            auth2.grantOfflineAccess().then(signInCallback);
+        });
+    });
+</script>
+{% endblock %}
