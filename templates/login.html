@@ -46,7 +46,7 @@
                         },
                         contentType: 'application/octet-stream; charset=utf-8',
                         success: function(result) {
-                            $('#result').html(`Login Successful!</br>${result}</br>Redirecting...`)
+                            $('#result').html(`<div class="row text-center"><h1 class="col-12">Login Successful!</h1>${result}<h3 class="col-12 text-center">Redirecting...</h3>`)
                                 setTimeout(function() {
                                     window.location.href = "/categories/";
                                 }, 4000);

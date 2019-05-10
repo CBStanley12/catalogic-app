@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}{{category.name}}{% endblock %}
+{% block title %}Category - {{category.name}}{% endblock %}
 
 {% block content %}
 <div class="row">
@@ -8,7 +8,7 @@
     </div>
 </div>
 <div class="row justify-content-center">
-    {% for i in animals %}
+    {% for i in items %}
     <div class="col-12 list-group">
         <li class="list-group-item mt-2">
             <div class="d-flex w-100 justify-content-between">

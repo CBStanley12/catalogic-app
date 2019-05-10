@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Category - {{category.name}}{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <h1 class="text-center">{{ category.name }} (Private)</h1>
+    </div>
+</div>
+<div class="row justify-content-center">
+    {% for i in items %}
+    <div class="col-12 list-group">
+        <li class="list-group-item mt-2">
+            <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">{{ i.name }}</h5>
+                <small></small>
+            </div>
+            <p class="mb-1">{{ i.description }}</p>
+        </li>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

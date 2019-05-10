@@ -93,8 +93,8 @@ def gconnect():
     login_session['user_id'] = user_id
 
     output = ''
-    output += "<h1>Welcome, %s!</h1>" % login_session['username']
-    output += "<img src='%s' style='width: 300px; height: 300px; border-radius: 150px; -webkit-border-radius: 150px; -moz-border-radius: 150px;'>" % login_session['picture']
+    output += "<div class='col-12'><h1>Welcome, %s!</h1></div>" % login_session['username']
+    output += "<div class='col-12 text-center'><img src='%s' style='width: 300px; height: 300px; border-radius: 150px; -webkit-border-radius: 150px; -moz-border-radius: 150px;'></div>" % login_session['picture']
     return output
 
 @app.route('/gdisconnect')
@@ -143,13 +143,17 @@ def disconnect():
 @app.route('/categories/')
 def showCategories():
     categories = session.query(Category).order_by(Category.name)
-    return render_template('categories.html', categories = categories)
+    if 'username' not in login_session:
+        return render_template('publiccategories.html', categories = categories)
+    else:
+        user = getUserInfo(login_session['user_id'])
+        return render_template('categories.html', categories = categories, user = user)
 
 # Add new categories
 @app.route('/categories/new/', methods=['GET', 'POST'])
 def newCategory():
-    """ if 'username' not in login_session:
-        return redirect('/login/') """
+    if 'username' not in login_session:
+        return redirect('/login/')
     if request.method == 'POST':
         newCategory = Category(name = request.form['name'], user_id = login_session['user_id'])
         session.add(newCategory)
@@ -160,10 +164,19 @@ def newCategory():
 
 # Display items in category
 @app.route('/categories/<int:category_id>/')
-def showAnimals(category_id):
+def showItems(category_id):
     category = session.query(Category).filter_by(id = category_id).one()
-    animals = session.query(Item).filter_by(category_id = category_id)
-    return render_template('animals.html', animals = animals, category = category)
+    creator = getUserInfo(category.user_id)
+    items = session.query(Item).filter_by(category_id = category_id)
+    if 'username' not in login_session or creator.id != login_session['user_id']:
+        if 'username' in login_session:
+            user = getUserInfo(login_session['user_id'])
+            return render_template('publicitems.html', items = items, category = category, creator = creator, user = user)
+        else:
+            return render_template('publicitems.html', items = items, category = category, creator = creator)
+    else:
+        user = getUserInfo(login_session['user_id'])
+        return render_template('items.html', items = items, category = category, creator = creator, user = user)
 
 # Helpful methods for user login and information
 def getUserID(email):
@@ -188,4 +201,3 @@ if __name__ == '__main__':
     app.secret_key = 'super_secret_key'
     app.debug = True
     app.run(host = '0.0.0.0', port = 8000)
-
