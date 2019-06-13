@@ -23,14 +23,14 @@ Base.metadata.bind = engine
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
 
-# Create anti-forgery state token for user login
+# Render login page and reate anti-forgery state token for user login
 @app.route('/login/')
 def showLogin():
     state = ''.join(random.choice(string.ascii_uppercase + string.digits) for x in xrange(32))
     login_session['state'] = state
     return render_template('login.html', STATE = state)
 
-# Implement Google login
+# Login with Google OAuth
 @app.route('/gconnect', methods = ['POST'])
 def gconnect():
     # Validate the state token
@@ -97,6 +97,7 @@ def gconnect():
     output += "<div class='col-12 text-center'><img src='%s' style='width: 300px; height: 300px; border-radius: 150px; -webkit-border-radius: 150px; -moz-border-radius: 150px;'></div>" % login_session['picture']
     return output
 
+# Disconnect user's logged in with Google OAuth
 @app.route('/gdisconnect')
 def gdisconnect():
     # DISCONNECT - Revoke a current user's token and reset their login_session
@@ -122,8 +123,10 @@ def gdisconnect():
         response.headers['Content-Type'] = 'application/json'
         return response
 
+# Disconnect and log out the user
 @app.route('/disconnect')
 def disconnect():
+    # Disconnect a user from the login_session if they are logged in
     if 'provider' in login_session:
         if login_session['provider'] == 'google':
             gdisconnect()
@@ -135,6 +138,7 @@ def disconnect():
         del login_session['user_id']
         del login_session['provider']
         return redirect(url_for('showCategories'))
+    # Redirect to showCategories if the user is not logged in
     else:
         redirect(url_for('showCategories'))
 
@@ -160,9 +164,10 @@ def newCategory():
         session.commit()
         return redirect(url_for('showCategories'))
     else:
-        return render_template('newcategory.html')
+        user = getUserInfo(login_session['user_id'])
+        return render_template('newcategory.html', user = user)
 
-# Display items in category
+# Display items in a category
 @app.route('/categories/<int:category_id>/')
 def showItems(category_id):
     category = session.query(Category).filter_by(id = category_id).one()
@@ -178,7 +183,7 @@ def showItems(category_id):
         user = getUserInfo(login_session['user_id'])
         return render_template('items.html', items = items, category = category, creator = creator, user = user)
 
-# Helpful methods for user login and information
+# Helpful methods for user login and user information
 def getUserID(email):
     try:
         user = session.query(User).filter_by(email = email).one()
