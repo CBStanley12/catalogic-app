@@ -109,6 +109,10 @@ mammal3 = Item(user_id=4, name="Brown Bear", description="Brown bears are a larg
 session.add(mammal3)
 session.commit()
 
+mammal4 = Item(user_id=4, name="Black Rhinoceros", description="Black rhinoceroses have a sort of attack-first-and-ask-questions-later attitude. When a rhino catches the scent of a human or anything else unfamiliar, it is likely to charge. Rhinos can't see well, so they sometimes charge objects like trees and rocks, mistaking them as threats. But rhinos have keen senses of smell and hearing.", category=category4)
+session.add(mammal4)
+session.commit()
+
 fish1 = Item(user_id=5, name="Great White Shark", description="The great white shark is the very picture of ferocity and shark attacks. Great whites are not mindless killers in search of human flesh. These apex predators are horribly misunderstood, and deserve our respect. Read on to learn about the great white shark.", category=category5)
 session.add(fish1)
 session.commit()

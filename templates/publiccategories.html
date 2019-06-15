@@ -7,10 +7,11 @@
         <h1 class="text-center">Categories</h1>
     </div>
 </div>
-<div class="row justify-content-center">
+
+<div class="row mt-4">
     {% for i in categories %}
-    <div class="col-12 list-group text-center">
-        <a class="list-group-item list-group-item-action" href={{ url_for('showItems', category_id = i.id) }}>{{ i.name }}</a>
+    <div class="col-md-6 col-12 list-group">
+        <a class="list-group-item list-group-item-action" id="list-{{i.name}}-list" href={{ url_for('showItems', category_id = i.id) }}>{{i.name}}</a>
     </div>
     {% endfor %}
 </div>

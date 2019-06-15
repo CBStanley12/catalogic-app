@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}Animal Categories{% endblock %}
+{% block title %}Login - Item Catalog App{% endblock %}
 
 {% block head %}
 <script>
@@ -15,22 +15,17 @@
 
 {% block content %}
 <div id="signin">
-    <div class="row">
-        <div class="col-12">
-            <h1 class="text-center">Sign in to continue.</h1>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-6 text-center">
-            <button id="signinGoogle" class="btn btn-dark"><i class="fab fa-google"></i>  Sign in With Google</button>
-        </div>
-        <div class="col-6 text-center">
-            <button id="signinTwitter" class="btn btn-dark"><i class="fab fa-twitter"></i>  Sign in with Twitter</button>
+    <div class="card w-50 m-auto">
+        <div class="card-body text-center">
+            <h1 class="card-title">Sign in to continue.</h1>
+            <button type="button" id="signinGoogle" class="btn btn-dark btn-block"><i class="fab fa-google"></i>  Sign in with Google</button>
+            <button type="button" id="signinTwitter" class="btn btn-dark btn-block"><i class="fab fa-twitter"></i>  Sign in with Twitter</button>
         </div>
     </div>
 </div>
 <div id="result" class="row"></div>
 {% endblock %}
+
 {% block script %}
 <script>
     $(document).ready(function() {

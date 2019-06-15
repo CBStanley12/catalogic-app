@@ -6,14 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{% block title %}{% endblock %}</title>
     
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://bootswatch.com/4/sandstone/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
     <script src="https://apis.google.com/js/client:platform.js?onload=start" async defer></script>
-
-    
 
     {% block head %}{% endblock %} 
 
@@ -22,8 +20,8 @@
 <body id="body">
     <div class="d-flex flex-column h-100">
         <header>
-            <nav class="navbar navbar-expand-lg navbar-light">
-                <a class="navbar-brand" href="{{ url_for('showCategories')}}"><span>Item Catalog App</span></a>
+            <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+                <a class="navbar-brand" href="{{ url_for('showCategories')}}"><i class="fas fa-book-open"></i> <span>Item Catalog App</span></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -31,23 +29,25 @@
                     <ul class="navbar-nav">
                         {% if 'username' not in session %}
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url_for('showLogin') }}">Login</a>
+                            <a class="btn btn-outline-secondary" href="{{ url_for('showLogin') }}">Login</a>
                         </li>
                         {% else %}
-                        <li class="nav-item">
-                            <a href="{{ url_for('newCategory') }}" class="nav-link">New Category</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link" href="{{ url_for('disconnect') }}"><img src="{{ user.picture }}" style="width: 30px; height: 30px; border-radius: 10px;"></a>
-                        </li>
+                        <div class="d-flex align-items-center">
+                            <li class="nav-item">
+                                <a class="btn btn-outline-secondary nav-link" href="{{ url_for('newCategory') }}">New Category</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url_for('disconnect') }}"><img src="{{ user.picture }}" width="40" height="40"></a>
+                            </li>
+                        </ul>
                         {% endif %}
                     </ul>
                 </div>
             </nav>
         </header>
         
-        <main class="my-auto">
-            <div id="content" class="container my-auto w-50">{% block content %}{% endblock %}</div>
+        <main>
+            <div id="content" class="container mt-2">{% block content %}{% endblock %}</div>
         </main>
         
         <footer id="footer" class="footer mt-auto py-2">
