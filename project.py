@@ -229,6 +229,24 @@ def newItem(category_id):
     else:
         return render_template('newitem.html', category_id = category_id)
 
+# Edit item
+@app.route('/categories/<int:category_id>/items/<int:item_id>/edit/', methods=['GET', 'POST'])
+def editItem(category_id, item_id):
+    if 'username' not in login_session:
+        return redirect('/login')
+    editedItem = session.query(Item).filter_by(id = item_id).one()
+    if request.method == 'POST':
+        if request.form['name']:
+            editedItem.name = request.form['name']
+        if request.form['desc']:
+            editedItem.description = request.form['desc']
+        session.add(editedItem)
+        session.commit()
+        flash("Item has been edited!")
+        return redirect(url_for('showItems', category_id = category_id))
+    else:
+        return render_template('edititem.html', category_id = category_id, item_id = item_id, i = editedItem)
+
 # Helpful methods for user login and user information
 def getUserID(email):
     try:
