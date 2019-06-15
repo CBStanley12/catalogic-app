@@ -247,6 +247,22 @@ def editItem(category_id, item_id):
     else:
         return render_template('edititem.html', category_id = category_id, item_id = item_id, i = editedItem)
 
+# Delete item
+@app.route('/categories/<int:category_id>/items/<int:item_id>/delete/', methods=['GET', 'POST'])
+def deleteItem(category_id, item_id):
+    if 'username' not in login_session:
+        return redirect('/login')
+    itemToDelete = session.query(Item).filter_by(id = item_id).one()
+    if itemToDelete.user_id != login_session['user_id']:
+        return "<script>function myFunction() {alert('You are not authorized to delete this item.');}</script><body onload='myFunction()'>"
+    if request.method == 'POST':
+        session.delete(itemToDelete)
+        session.commit()
+        flash("Item has been deleted!")
+        return redirect(url_for('showItems', category_id = category_id))
+    else:
+        return render_template('deleteitem.html', category_id = category_id, item_id = item_id, i = itemToDelete)
+
 # Helpful methods for user login and user information
 def getUserID(email):
     try:

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Delete Item - {{ i.name }}{% endblock %}
+
+{% block content %}
+<div class="card border-danger w-50 m-auto">
+		<div class="card-body text-center">
+				<h1 class="card-title">Are you sure you want to delete {{ i.name }}?</h1>
+				<form action={{ url_for('deleteItem', category_id = category_id, item_id = item_id) }} method="POST">
+						<button class="btn btn-dark" type="submit">Delete</button>
+						<a class="btn btn-danger" type="button" href={{ url_for('showItems', category_id = category_id) }}>Cancel</a>
+				</form>
+		</div>
+</div>
+{% endblock %}
