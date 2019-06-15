@@ -1,6 +1,12 @@
 {% extends "base.html" %}
 {% block title %}Category - {{category.name}}{% endblock %}
 
+{% block nav %}
+<li class="nav-item">
+    <a class="nav-link" href={{ url_for('editCategory', category_id = category.id) }}><i class="far fa-edit"></i> Edit Category</a>
+</li>
+{% endblock %}
+
 {% block content %}
 <div class="row">
     <div class="col-12">

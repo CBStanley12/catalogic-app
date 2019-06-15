@@ -167,6 +167,22 @@ def newCategory():
         user = getUserInfo(login_session['user_id'])
         return render_template('newcategory.html', user = user)
 
+# Edit category
+@app.route('/categories/<int:category_id>/edit/', methods=['GET', 'POST'])
+def editCategory(category_id):
+    if 'username' not in login_session:
+        return redirect('/login')
+    editedCategory = session.query(Category).filter_by(id = category_id).one()
+    if request.method == 'POST':
+        if request.form['name']:
+            editedCategory.name = request.form['name']
+        session.add(editedCategory)
+        session.commit()
+        flash("New category has been created!")
+        return redirect(url_for('showItems', category_id = category_id))
+    else:
+        return render_template('editcategory.html', category_id = category_id, i = editedCategory)
+        
 # Display items in a category
 @app.route('/categories/<int:category_id>/')
 def showItems(category_id):

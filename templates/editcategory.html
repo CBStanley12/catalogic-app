@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Edit Category - {{ i.name }}{% endblock %}
+
+{% block content %}
+<div class="card w-50 m-auto">
+		<div class="card-body">
+				<h1 class="card-title text-center">Edit Category</h1>
+				<form action={{ url_for('editCategory', category_id = category_id) }} method="POST">
+						<div class="form-group">
+								<h4 for="exampleInputCategory">Name:</h4>
+								<input type="text" class="form-control form-control-md" id="exampleInputCategory" aria-describedby="categoryHelp" placeholder="" name="name">
+						</div>
+						<button class="btn btn-dark" type="submit">Save Changes</button>
+						<a class="btn btn-danger" type="button" href={{ url_for('showItems', category_id = category_id) }}>Cancel</a>
+				</form>
+		</div>
+</div>
+{% endblock %}
