@@ -3,6 +3,9 @@
 
 {% block nav %}
 <li class="nav-item">
+    <a class="nav-link" href={{ url_for('newItem', category_id = category.id) }}><i class="far fa-plus-square"></i> New Item</a>
+</li>
+<li class="nav-item">
     <a class="nav-link" href={{ url_for('editCategory', category_id = category.id) }}><i class="far fa-edit"></i> Edit Category</a>
 </li>
 <li class="nav-item">
@@ -13,19 +16,16 @@
 {% block content %}
 <div class="row">
     <div class="col-12">
-        <h1 class="text-center">{{ category.name }} (Private)</h1>
+        <h1 class="text-center">{{ category.name }}</h1>
     </div>
 </div>
-<div class="row justify-content-center">
+<div class="row justify-content-center mt-4">
     {% for i in items %}
-    <div class="col-12 list-group">
-        <li class="list-group-item mt-2">
-            <div class="d-flex w-100 justify-content-between">
-                <h5 class="mb-1">{{ i.name }}</h5>
-                <small></small>
-            </div>
-            <p class="mb-1">{{ i.description }}</p>
-        </li>
+    <div class="card col-md-5 col-12 m-2">
+        <h5 class="card-header">{{ i.name }}</h5>
+        <div class="card-body">
+            <p class="card-text">{{ i.description }}</p>
+        </div>
     </div>
     {% endfor %}
 </div>

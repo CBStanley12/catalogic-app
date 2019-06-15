@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}New Item{% endblock %}
+
+{% block content %}
+<div class="card w-50 m-auto">
+		<div class="card-body">
+				<h1 class="card-title text-center">Create a New Item</h1>
+				<form action={{ url_for('newItem', category_id = category_id) }} method="POST">
+						<div class="form-group">
+								<h4 for="itemInputName" class="mt-3">Name:</h4>
+								<input type="text" class="form-control form-control-md" id="itemInputName" aria-describedby="categoryHelp" placeholder="" name="name">
+								<h4 for="itemInputDescription" class="mt-3">Description:</h4>
+								<textarea class="form-control form-control-md" id="itemInputDescription" rows="3" aria-describedby="categoryHelp" placeholder="" name="desc"></textarea>
+						</div>
+						<button class="btn btn-dark" type="submit">Create</button>
+						<a class="btn btn-danger" type="button" href={{ url_for('showItems', category_id = category_id) }}>Cancel</a>
+				</form>
+		</div>
+</div>
+{% endblock %}

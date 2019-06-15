@@ -200,7 +200,7 @@ def deleteCategory(category_id):
         return render_template('deletecategory.html', category_id = category_id, i = categoryToDelete)
 
 # Display items in a category
-@app.route('/categories/<int:category_id>/')
+@app.route('/categories/<int:category_id>/items')
 def showItems(category_id):
     category = session.query(Category).filter_by(id = category_id).one()
     creator = getUserInfo(category.user_id)
@@ -214,6 +214,20 @@ def showItems(category_id):
     else:
         user = getUserInfo(login_session['user_id'])
         return render_template('items.html', items = items, category = category, creator = creator, user = user)
+
+# Add new item
+@app.route('/categories/<int:category_id>/items/new/', methods=['GET', 'POST'])
+def newItem(category_id):
+    if 'username' not in login_session:
+        return redirect('/login')
+    elif request.method == 'POST':
+        newItem = Item(name = request.form['name'], description = request.form['desc'], category_id = category_id, user_id = login_session['user_id'])
+        session.add(newItem)
+        session.commit()
+        flash("Item has been created!")
+        return redirect(url_for('showItems', category_id = category_id))
+    else:
+        return render_template('newitem.html', category_id = category_id)
 
 # Helpful methods for user login and user information
 def getUserID(email):
