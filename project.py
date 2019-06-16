@@ -282,6 +282,25 @@ def createUser(login_session):
     user = session.query(User).filter_by(email = login_session['email']).one()
     return user.id
 
+# API Endpoint - All Categories
+@app.route('/categories/JSON')
+def categoriesJSON():
+    categories = session.query(Category).order_by(Category.id).all()
+    return jsonify(Categories = [i.serialize for i in categories])
+
+# API Endpoint - Category Items
+@app.route('/categories/<int:category_id>/items/JSON')
+def categoryItemsJSON(category_id):
+    category = session.query(Category).filter_by(id = category_id).one()
+    items = session.query(Item).filter_by(category_id = category_id).all()
+    return jsonify(Items = [i.serialize for i in items])
+
+# API Endpoint - Item
+@app.route('/categories/<int:category_id>/items/<int:item_id>/JSON')
+def itemJSON(category_id, item_id):
+    item = session.query(Item).filter_by(id = item_id).one()
+    return jsonify(Item = item.serialize)
+
 if __name__ == '__main__':
     app.secret_key = 'super_secret_key'
     app.debug = True
