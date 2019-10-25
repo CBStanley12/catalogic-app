@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Item Categories{% endblock %}
+
+{% block nav %}
+<li class="nav-item">
+    <a class="nav-link" href="{{ url_for('newCategory') }}"><i class="far fa-plus-square"></i> New Category</a>
+</li>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <h1 class="text-center">Categories</h1>
+    </div>
+</div>
+
+<div class="row mt-4">
+    {% for i in categories %}
+    <div class="col-md-6 col-12 list-group">
+        <a class="list-group-item list-group-item-action" href={{ url_for('showItems', category_id = i.id) }}>{{ i.name }}</a>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

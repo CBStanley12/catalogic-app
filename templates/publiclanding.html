@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Catalogic - Share Your Unique Collections</title>
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='landing.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="content">
+            <div class="content-container">
+                <h1 class="content-title">Share your unique collection of curiosities</h1>
+                <p class="content-text">Catalogic helps you share your interests with collectors around the world, or explore and discover original collections.</p>
+                <div class="content-btns">
+                    <a href="{{ url_for('showLogin') }}">
+                        <button class="btn btn-login" type="button">Login to Share</button>
+                    </a>
+                    <p class="btns-sep">or</p>
+                    <a href="{{ url_for('showCategories') }}">
+                        <button class="btn btn-discover">Discover Collections
+                            <div class="svg-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M10 7H2v6h8v5l8-8-8-8v5z"/></svg>
+                            </div>
+                        </button>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="hero hero-img"></div>
+    </div>
+</body>
+</html>

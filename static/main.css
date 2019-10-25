@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,700,800,900&display=swap');
+
+:root {
+    --clr-blue--dark: #17223A;
+    --clr-blue: #1A4A9C;
+    --clr-blue--light: #5BB1D0;
+    --clr-blue--glacier: #6EA6C5;
+}
+
+html, body {
+    color: var(--clr-blue--dark);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 100%;
+    height: 100%;
+    margin: 0;
+    width: 100%;
+}

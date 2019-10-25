@@ -15,7 +15,7 @@ import requests
 app = Flask(__name__)
 
 CLIENT_ID = json.loads(open('client_secrets.json', 'r').read())['web']['client_id']
-APPLICATION_NAME = "Animal Catalog Application"
+APPLICATION_NAME = "Catalogic - Collection Sharing Application"
 
 engine = create_engine('sqlite:///item_catalog.db')
 Base.metadata.bind = engine
@@ -28,7 +28,7 @@ session = DBSession()
 def showLogin():
     state = ''.join(random.choice(string.ascii_uppercase + string.digits) for x in xrange(32))
     login_session['state'] = state
-    return render_template('login.html', STATE = state)
+    return render_template('login.html', STATE = state, CLIENT_ID = CLIENT_ID)
 
 # Login with Google OAuth
 @app.route('/gconnect', methods = ['POST'])
@@ -144,6 +144,13 @@ def disconnect():
 
 # Display all categories
 @app.route('/')
+def showLandingPage():
+    if 'username' not in login_session:
+        return render_template('publiclanding.html')
+    else:
+        user = getUserInfo(login_session['user_id'])
+        return render_template('landing.html', user = user)
+
 @app.route('/categories/')
 def showCategories():
     categories = session.query(Category).order_by(Category.name)

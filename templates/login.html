@@ -6,7 +6,7 @@
     function start() {
         gapi.load('auth2', function() {
             auth2 = gapi.auth2.init({
-                client_id: '784286001175-olnb45nusq6prlo906ttntq9nj3opmq8.apps.googleusercontent.com'
+                client_id: '{{ CLIENT_ID }}',
             });
         });
     }

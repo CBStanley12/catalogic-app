@@ -1,0 +1,87 @@
+@import "main.css";
+
+.btn {
+    border: none;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 700;
+    height: 2.8rem;
+    width: 15rem;
+}
+
+.btn:hover {
+    filter: opacity(0.8);
+}
+
+.btn-login { background-color: var(--clr-blue); }
+
+.btn-discover { background-color: var(--clr-blue--dark); line-height: 2rem; text-align: center; }
+
+.btns-sep { color: gray; }
+
+.container {
+    display: grid;
+    grid-template-areas:
+        "content"
+        "hero";
+    grid-template-columns: 1.5fr 1fr;
+    grid-template-rows: 1fr;
+    height: 100vh;
+    width: 100%;
+}
+
+.content {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.content-btns {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+}
+
+.content-container {
+    margin: auto;
+    max-width: 45rem;
+}
+
+.content-text {
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin: 0 0 1rem 0;
+}
+
+.content-title {
+    color: var(--clr-blue);
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+}
+
+.hero-img {
+    background-image: url("images/karen-vardazaryan-JBrfoV-BZts-unsplash.jpg");
+    background-color: #cccccc;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.svg-icon {
+    align-self: center;
+    display: inline-flex;
+    margin-left: 1rem;
+}
+
+.svg-icon > svg {
+    fill: white;
+    height: 1.3rem;
+    position: relative;
+    top: .300em;
+    width: 1.3rem;
+}
