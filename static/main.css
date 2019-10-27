@@ -5,6 +5,9 @@
     --clr-blue: #1A4A9C;
     --clr-blue--light: #5BB1D0;
     --clr-blue--glacier: #6EA6C5;
+    --clr-red: #E40C2B;
+    --clr-yellow: #EBA63F;
+    --clr-green: #438945;
 }
 
 html, body {
