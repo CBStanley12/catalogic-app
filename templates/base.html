@@ -6,8 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{% block title %}{% endblock %}</title>
     
-    <link rel="stylesheet" href="https://bootswatch.com/4/sandstone/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
     <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
@@ -17,18 +16,34 @@
 
 </head>
 
-<body id="body">
-    <div class="d-flex flex-column h-100">
-        <header>
+<body>
+
+    <div class="container-grid">
+
+        <header class="header container-flex">
+            <a class="header_logo" href="#" title="Home">CATALOGIC</a>
+            <nav class="header_nav">
+                {% if 'username' not in session %}
+                <a class="header_nav-btn" href={{ url_for('showLogin') }}>
+                    Sign in
+                </a>
+                {% else %}
+                <a class="header_nav-link">
+                    <img class="header_nav-user" src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ" alt="User Profile"> Photo"
+                </a>
+                {% endif %}
+            </nav>
+
+            <!--
             <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
                 <a class="navbar-brand" href="{{ url_for('showCategories')}}"><i class="fas fa-book-open"></i> Item Catalog App</a>
                 
-                <!-- Toggler/Collapse Button -->
+
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar" aria-controls="collapsibleNavbar" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <!-- Navbar Links -->
+
                 <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
                     <ul class="navbar-nav d-flex align-items-center">
                         {% if 'username' not in session %}
@@ -44,21 +59,18 @@
                     </ul>
                 </div>
             </nav>
+            -->
         </header>
         
-        <main>
-            <div id="content" class="container mt-2">{% block content %}{% endblock %}</div>
+        <main class="main">
+            {% block content %}{% endblock %}
         </main>
         
-        <footer id="footer" class="footer mt-auto py-2">
-            <div class="container text-center">
-                <span class="text-muted">&copy; 2019 by Christopher Stanley</span>
-            </div>
+        <footer class="footer">
+            <p class="footer_copy">&copy; 2019 by Christopher Stanley</p>
         </footer>
-    </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    </div>
 
     {% block script %}{% endblock %}
 

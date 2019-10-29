@@ -17,7 +17,8 @@
 
 .btn-login { background-color: var(--clr-blue); }
 
-.btn-discover { background-color: var(--clr-blue--dark);
+.btn-discover {
+    background-color: var(--clr-blue--dark);
     line-height: 2rem;
     text-align: center;
 }
@@ -77,7 +78,7 @@
 .svg-icon {
     align-self: center;
     display: inline-flex;
-    margin-left: 1rem;
+    margin-left: 0.7rem;
 }
 
 .svg-icon > svg {

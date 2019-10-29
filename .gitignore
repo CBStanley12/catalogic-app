@@ -2,3 +2,4 @@ catalogic_data.db
 item_catalog.db
 client_secrets.json
 .vscode/settings.json
+database_setup.pyc
