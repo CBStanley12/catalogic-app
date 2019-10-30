@@ -53,16 +53,15 @@ html, body {
 }
 
 .header {
-    background-color: white;
-    box-shadow: 0 -0.5rem 0.9rem 0.2rem var(--clr-blue--dark);
+    background-color: var(--clr-blue);
+    color: white;
     grid-area: header;
-    padding: 0 3rem;
+    padding: 0 2rem;
     top: 0;
     width: 100%;
 }
 
 .header_logo {
-    color: var(--clr-blue);
     font-size: 1.6rem;
     font-weight: 700;
 }
@@ -73,14 +72,14 @@ html, body {
 }
 
 .header_nav-btn {
-    border: 1px solid var(--clr-blue--dark);
+    border: 1px solid white;
     border-radius: 5px;
     padding: 3px 10px;
 }
 
 .header_nav-btn:hover {
-    background-color: var(--clr-blue--dark);
-    color: white;
+    background-color: white;
+    color: var(--clr-blue);
 }
 
 .header_nav-link, .header_nav-btn {
@@ -163,7 +162,7 @@ html, body {
 }
 
 .sidebar_link:hover {
-    background-color: var(--clr-blue--dark);
+    background-color: var(--clr-blue);
     color: white;
 }
 

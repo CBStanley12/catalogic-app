@@ -21,7 +21,7 @@
     <div class="container-grid">
 
         <header class="header container-flex">
-            <a class="header_logo" href="#" title="Home">CATALOGIC</a>
+            <a class="header_logo" href={{ url_for('showHomepage') }} title="Home">CATALOGIC</a>
             <nav class="header_nav">
                 {% if 'username' not in session %}
                 <a class="header_nav-btn" href={{ url_for('showLogin') }}>
