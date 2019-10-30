@@ -1,7 +1,7 @@
 from flask import Flask, render_template, url_for, request, redirect, flash, jsonify
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from database_setup import Base, User, Category, Item
+from database_setup import Base, User, Category, Collection, Item
 from flask import session as login_session
 import random, string
 from oauth2client.client import flow_from_clientsecrets
@@ -17,7 +17,7 @@ app = Flask(__name__)
 CLIENT_ID = json.loads(open('client_secrets.json', 'r').read())['web']['client_id']
 APPLICATION_NAME = "Catalogic - Collection Sharing Application"
 
-engine = create_engine('sqlite:///item_catalog.db')
+engine = create_engine('sqlite:///catalogic_data.db')
 Base.metadata.bind = engine
 
 DBSession = sessionmaker(bind=engine)
@@ -151,11 +151,12 @@ def showLandingPage():
         user = getUserInfo(login_session['user_id'])
         return render_template('landing.html', user = user)
 
-@app.route('/categories/')
-def showCategories():
+@app.route('/c/all')
+def showHomepage():
     categories = session.query(Category).order_by(Category.name)
+    collections = session.query(Collection, Category, User).join(Category, User).order_by(Collection.name).all()
     if 'username' not in login_session:
-        return render_template('publiccategories.html', categories = categories)
+        return render_template('homepage-public.html', categories = categories, collections = collections)
     else:
         user = getUserInfo(login_session['user_id'])
         return render_template('categories.html', categories = categories, user = user)

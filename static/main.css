@@ -2,9 +2,12 @@
 
 :root {
     --clr-blue--dark: #17223A;
+    --clr-blue--dark-30: rgba(23, 34, 58, 0.3);
     --clr-blue: #1A4A9C;
+    --clr-blue--30: rgba(26, 74, 156, 0.3);
     --clr-blue--light: #5BB1D0;
     --clr-blue--glacier: #6EA6C5;
+    --clr-blue--glacier-20: rgba(110, 166, 197, 0.2);
     --clr-red: #E40C2B; 
     --clr-yellow: #EBA63F;
     --clr-green: #438945;
@@ -12,6 +15,11 @@
 }
 
 * { box-sizing: border-box; }
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
 
 html, body {
     color: var(--clr-blue--dark);
@@ -23,18 +31,32 @@ html, body {
     width: 100%;
 }
 
+.container-grid {
+    display: grid;
+    grid-template-areas:
+        "header header"
+        "sidebar main"
+        "footer footer";
+    grid-template-columns: 1fr 3fr;
+    grid-template-rows: 3.8rem 1fr 4rem;
+}
+
 .container-flex {
     align-items: center;
     display: flex;
     justify-content: space-between;
 }
 
+.footer {
+    grid-area: footer;
+    width: 100%;
+}
+
 .header {
     background-color: white;
     box-shadow: 0 -0.5rem 0.9rem 0.2rem var(--clr-blue--dark);
-    height: 3.8rem;
+    grid-area: header;
     padding: 0 3rem;
-    position: fixed;
     top: 0;
     width: 100%;
 }
@@ -77,4 +99,74 @@ html, body {
     height: 2rem;
     border-radius: 50%;
     object-fit: cover;
+}
+
+.main {
+    background-color: var(--clr-blue--glacier-20);
+    grid-area: main;
+    height: 100vh;
+    padding: 0 2rem;
+    width: 100%;
+}
+
+.main_card {
+    background-color: white;
+    border-bottom: 0.5px solid var(--clr-blue--glacier-20);
+    min-height: 3rem;
+    padding: 0.5rem 1rem;
+    width: 100%;
+}
+
+.main_card:hover {
+    -webkit-box-shadow:inset 0px 0px 0px 1px var(--clr-blue--dark);
+    -moz-box-shadow:inset 0px 0px 0px 1px var(--clr-blue--dark);
+    box-shadow:inset 0px 0px 0px 1px var(--clr-blue--dark);
+    cursor: pointer;
+}
+
+.main_card-title {
+    font-weight: 700;
+}
+
+.main_card-info {
+    color: var(--clr-blue--glacier);
+    font-size: 0.8rem;
+}
+
+.main_card-info-link {
+    color: var(--clr-blue--glacier);
+    text-decoration: none;
+}
+
+.info-link-category {
+    font-weight: 700;
+}
+
+.main_card-info-link:hover {
+    text-decoration: underline;
+}
+
+.sidebar {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    grid-area: sidebar;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+.sidebar_link {
+    color: var(--clr-blue--dark);
+    padding: 0.5rem 2rem;
+    text-decoration: none;
+    width: 100%;
+}
+
+.sidebar_link:hover {
+    background-color: var(--clr-blue--dark);
+    color: white;
+}
+
+.sidebar_title {
+    align-self: center;
 }

@@ -6,8 +6,6 @@ from sqlalchemy.orm import relationship
 from sqlalchemy import create_engine
 from sqlalchemy.dialects.postgresql import UUID
 
-from uuid import uuid4
-
 Base = declarative_base()
 
 class User(Base):
@@ -15,7 +13,6 @@ class User(Base):
 
     name = Column(String(80), nullable = False)
     id = Column(Integer, autoincrement=True, primary_key=True)
-    uuid = Column(UUID(as_uuid=True), default=uuid4)
     email = Column(String(80), nullable = False)
     picture = Column(String(80))
 
@@ -24,7 +21,6 @@ class User(Base):
         return {
             'name' : self.name,
             'id' : self.id,
-            'uuid' : self.uuid,
             'email' : self.email,
             'picture' : self.picture,
         }

@@ -33,37 +33,14 @@
                 </a>
                 {% endif %}
             </nav>
-
-            <!--
-            <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-                <a class="navbar-brand" href="{{ url_for('showCategories')}}"><i class="fas fa-book-open"></i> Item Catalog App</a>
-                
-
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar" aria-controls="collapsibleNavbar" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-
-                <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
-                    <ul class="navbar-nav d-flex align-items-center">
-                        {% if 'username' not in session %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url_for('showLogin') }}"><i class="fas fa-sign-in-alt"></i> Login</a>
-                        </li>
-                        {% else %}
-                        {% block nav %}{% endblock %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url_for('disconnect') }}"><i class="fas fa-sign-out-alt"></i> Logout</a>
-                        </li>
-                        {% endif %}
-                    </ul>
-                </div>
-            </nav>
-            -->
         </header>
-        
+
+        <aside class="sidebar">
+            {% block sidebar %}{% endblock %}
+        </aside>
+
         <main class="main">
-            {% block content %}{% endblock %}
+            {% block main %}{% endblock %}
         </main>
         
         <footer class="footer">
