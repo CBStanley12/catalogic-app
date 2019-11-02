@@ -5,7 +5,9 @@
     <h3 class="sidebar_title">Categories</h3>
     <a class="sidebar_link active" id="" href={{ url_for('showHomepage') }}>All Collections</a>
     {% for item in categories %}
-    <a class="sidebar_link" id="" href="">{{ item.name }}</a>
+    <a class="sidebar_link" id="" href="">
+        {{ item.name }}
+    </a>
     {% endfor %}
 {% endblock %}
 

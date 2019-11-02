@@ -93,8 +93,8 @@ def gconnect():
     login_session['user_id'] = user_id
 
     output = ''
-    output += "<div class='col-12'><h1>Welcome, %s!</h1></div>" % login_session['username']
-    output += "<div class='col-12 text-center'><img src='%s' style='width: 300px; height: 300px; border-radius: 150px; -webkit-border-radius: 150px; -moz-border-radius: 150px;'></div>" % login_session['picture']
+    output += "<h1>Welcome, %s!</h1>" % login_session['username']
+    output += "<img src='%s'>" % login_session['picture']
     return output
 
 # Disconnect user's logged in with Google OAuth
@@ -137,10 +137,10 @@ def disconnect():
         del login_session['picture']
         del login_session['user_id']
         del login_session['provider']
-        return redirect(url_for('showCategories'))
+        return redirect(url_for('showHomepage'))
     # Redirect to showCategories if the user is not logged in
     else:
-        redirect(url_for('showCategories'))
+        redirect(url_for('showHomepage'))
 
 # Display all categories
 @app.route('/')
@@ -151,6 +151,7 @@ def showLandingPage():
         user = getUserInfo(login_session['user_id'])
         return render_template('landing.html', user = user)
 
+@app.route('/c')
 @app.route('/c/all')
 def showHomepage():
     categories = session.query(Category).order_by(Category.name)
@@ -158,8 +159,8 @@ def showHomepage():
     if 'username' not in login_session:
         return render_template('homepage-public.html', categories = categories, collections = collections)
     else:
-        user = getUserInfo(login_session['user_id'])
-        return render_template('categories.html', categories = categories, user = user)
+        user = getUserInfo(login_session['user_id']) 
+        return render_template('homepage.html', categories = categories, collections = collections, user = user)
 
 # Add new categories
 @app.route('/categories/new/', methods=['GET', 'POST'])

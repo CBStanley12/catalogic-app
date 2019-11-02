@@ -1,61 +1,76 @@
-{% extends "base.html" %}
-{% block title %}Login - Item Catalog App{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>c/login</title>
 
-{% block head %}
-<script>
-    function start() {
-        gapi.load('auth2', function() {
-            auth2 = gapi.auth2.init({
-                client_id: '{{ CLIENT_ID }}',
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='login.css') }}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    <script src="https://apis.google.com/js/client:platform.js?onload=start" async defer></script>
+
+    <script>
+        function start() {
+            gapi.load('auth2', function() {
+                auth2 = gapi.auth2.init({
+                    client_id: '{{ CLIENT_ID }}',
+                });
             });
-        });
-    }
-</script>
-{% endblock %}
-
-{% block content %}
-<div id="signin">
-    <div class="card w-50 m-auto">
-        <div class="card-body text-center">
-            <h1 class="card-title">Sign in to continue.</h1>
-            <button type="button" id="signinGoogle" class="btn btn-dark btn-block"><i class="fab fa-google"></i>  Sign in with Google</button>
-            <button type="button" id="signinTwitter" class="btn btn-dark btn-block"><i class="fab fa-twitter"></i>  Sign in with Twitter</button>
+        }
+    </script>
+</head>
+<body class="container-flex bg-blue--light">
+    <div class="login_card container-flex">
+        <h1 class="login_card-title">Sign in to continue</h1>
+        <div class="login_card-btns">
+            <button type="button" id="signinGoogle" class="login_card-btn btn">
+                <i class="fab fa-google"></i>  Sign in with Google
+            </button>
+            <button type="button" id="signinTwitter" class="login_card-btn btn">
+                <i class="fab fa-twitter"></i>  Sign in with Twitter
+            </button>
         </div>
     </div>
-</div>
-<div id="result" class="row"></div>
-{% endblock %}
 
-{% block script %}
-<script>
-    $(document).ready(function() {
-        $('#signinGoogle').click(function() {
-            function signInCallback(authResult) {
-                if (authResult['code']) {
-                    $('#signin').attr('style', 'display: none');
-                    $.ajax({
-                        type: 'POST',
-                        url: '/gconnect?state={{STATE}}',
-                        headers: {
-                            'X-Requested-With' : 'XMLHttpRequest'
-                        },
-                        contentType: 'application/octet-stream; charset=utf-8',
-                        success: function(result) {
-                            $('#result').html(`<div class="row text-center"><h1 class="col-12">Login Successful!</h1>${result}<h3 class="col-12 text-center">Redirecting...</h3>`)
-                                setTimeout(function() {
-                                    window.location.href = "/categories/";
-                                }, 4000);
-                        },
-                        processData: false,
-                        data: authResult['code']
-                    });
-                } else {
-                    console.log(`There was an error: ${authResult['error']}`);
-                    $('#result').html(`Failed to make a server-side call. Check your configuration and console.`);
+    <div id="result" class="hide result_card container-flex">
+        <h1>Login successful!</h1>
+        <h2>Redirecting...</h2>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $('#signinGoogle').click(function() {
+                function signInCallback(authResult) {
+                    if (authResult['code']) {
+                        $('.login_card').addClass('hide');
+                        $.ajax({
+                            type: 'POST',
+                            url: '/gconnect?state={{STATE}}',
+                            headers: {
+                                'X-Requested-With' : 'XMLHttpRequest'
+                            },
+                            contentType: 'application/octet-stream; charset=utf-8',
+                            success: function(result) {
+                                $('#result').removeClass('hide')
+                                    setTimeout(function() {
+                                        window.location.href = "/c";
+                                    }, 3000);
+                            },
+                            processData: false,
+                            data: authResult['code']
+                        });
+                    } else if (authResult['error']) {
+                        console.log(`There was an error: ${authResult['error']}`);
+                    } else {
+                        $('#result').html(`Failed to make a server-side call. Check your configuration and console.`);
+                    }
                 }
-            }
-            auth2.grantOfflineAccess().then(signInCallback);
+                auth2.grantOfflineAccess().then(signInCallback);
+            });
         });
-    });
-</script>
-{% endblock %}
+    </script>
+</body>
+</html>

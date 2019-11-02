@@ -1,0 +1,38 @@
+@import "main.css";
+
+.bg-blue--light {
+    background-color: var(--clr-blue--glacier-20);
+}
+
+.btn {
+    background-color: var(--clr-blue);
+    border: none;
+    border-radius: 5px;
+    color: white;
+    height: 2rem;
+    width: 10rem;
+}
+
+.btn:hover {
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+.container-flex {
+    flex-direction: column;
+    justify-content: center;
+}
+
+.hide { display: none; }
+
+.login_card, .result_card {
+    background-color: white;
+    border: 1px solid var(--clr-blue--20);
+    border-radius: 5px;
+    height: 20rem;
+    width: 30rem;
+}
+
+.result_card h1 {
+    font-size: 1.8rem;
+}

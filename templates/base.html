@@ -9,9 +9,6 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
-    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
-    <script src="https://apis.google.com/js/client:platform.js?onload=start" async defer></script>
-
     {% block head %}{% endblock %} 
 
 </head>
@@ -28,8 +25,8 @@
                     Sign in
                 </a>
                 {% else %}
-                <a class="header_nav-link">
-                    <img class="header_nav-user" src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ" alt="User Profile"> Photo"
+                <a class="header_nav-link" href={{ url_for('disconnect') }}>
+                    <img class="header_nav-user" src="{{ user.picture }}" alt="User Profile Photo">
                 </a>
                 {% endif %}
             </nav>
