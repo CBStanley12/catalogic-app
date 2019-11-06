@@ -82,5 +82,6 @@ collection3_item4 = Item(name="1909-11 Ty Cobb Tobacco (Ty Cobb Back)", descript
 collection3_item5 = Item(name="1914 Baltimore News #9 Babe Ruth", description="", collection=collection3, user_id=4)
 
 session.add_all([collection3_item1, collection3_item2, collection3_item3, collection3_item4, collection3_item5])
+session.commit()
 
 print("Items sucessfully added to database!")

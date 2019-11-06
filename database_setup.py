@@ -55,6 +55,7 @@ class Collection(Base):
             'name' : self.name,
             'id' : self.id,
             'description' : self.description,
+            'category_id' : self.category_id,
             'user_id' : self.user_id,
         }
 
@@ -75,6 +76,7 @@ class Item(Base):
             'name' : self.name,
             'id' : self.id,
             'description' : self.description,
+            'collection_id' : self.collection_id,
             'user_id' : self.user_id,
         }
 

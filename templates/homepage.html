@@ -1,21 +1,11 @@
 {% extends "base.html" %}
 {% block title %}c/all{% endblock %}
 
-{% block sidebar %}
-    <h3 class="sidebar_title">Categories</h3>
-    <a class="sidebar_link active" id="" href={{ url_for('showHomepage') }}>All Collections</a>
-    {% for item in categories %}
-    <a class="sidebar_link" id="" href="">
-        {{ item.name }}
-    </a>
-    {% endfor %}
-{% endblock %}
-
 {% block main %}
-    <h2 class="main_title"> All Collections</h2>
+    <h2 class="main_title"></h2>
 
     {% for collection, category, user in collections %}
-    <a href="">  <!-- Link to showCategory  url_for('showCollection', collection_id = collection.id) -->
+    <a href={{ url_for('showCollection', category_name = category.name, collection_id = collection.id) }}>
         <div class="main_card">
             <div class="main_card-title">
                 {{ collection.name }}

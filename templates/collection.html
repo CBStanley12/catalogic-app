@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}
+    {{ collection.name }}
+{% endblock %}
+
+{% block main %}
+    <h2 class="main_title">
+        {{ collection.name }}
+    </h2>
+    <h4 class="main_creator">
+        Created by {{ creator.name }}
+    </h4>
+
+    {% for item in items %}
+    <div class="main_card">
+        <div class="main_card-title">
+            {{ item.name }}
+        </div>
+    </div>
+    {% endfor %}
+
+{% endblock %}

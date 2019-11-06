@@ -146,11 +146,11 @@ def disconnect():
 @app.route('/')
 def showLandingPage():
     if 'username' not in login_session:
-        return render_template('publiclanding.html')
+        return render_template('landing.html')
     else:
-        user = getUserInfo(login_session['user_id'])
-        return render_template('landing.html', user = user)
+        return redirect('/c')
 
+# Display homepage - view collections for all categories
 @app.route('/c')
 @app.route('/c/all')
 def showHomepage():
@@ -162,6 +162,7 @@ def showHomepage():
         user = getUserInfo(login_session['user_id']) 
         return render_template('homepage.html', categories = categories, collections = collections, user = user)
 
+# Display category page - view collections for a specific category
 @app.route('/c/<category_name>')
 def showCategory(category_name):
     categories = session.query(Category).order_by(Category.name)
@@ -172,6 +173,20 @@ def showCategory(category_name):
     else:
         user = getUserInfo(login_session['user_id'])
         return render_template('category.html', categories = categories, category = category, collections = collections, user = user)
+
+# Display collection page - view a specific collection
+@app.route('/c/<category_name>/<collection_id>')
+def showCollection(category_name, collection_id):
+    categories = session.query(Category).order_by(Category.name)
+    category = session.query(Category).filter_by(name = category_name.title()).one()
+    collection = session.query(Collection).filter_by(id = collection_id).one()
+    creator = getUserInfo(collection.user_id)
+    items = session.query(Item).filter_by(collection_id = collection_id).order_by(Item.name).all()
+    if 'username' not in login_session:
+        return render_template('collection.html', categories = categories, category = category, collection = collection, creator = creator, items = items)
+    else:
+        user = getUserInfo(login_session['user_id'])
+        return render_template('collection.html', categories = categories, category = category, collection = collection, creator = creator, items = items, user = user)
 
 # Add new categories
 @app.route('/categories/new/', methods=['GET', 'POST'])

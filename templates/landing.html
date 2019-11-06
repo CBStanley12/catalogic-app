@@ -1,24 +1,35 @@
-{% extends "base.html" %}
-{% block title %}Item Categories{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Catalogic - Share Your Unique Collections</title>
 
-{% block nav %}
-<li class="nav-item">
-    <a class="nav-link" href="{{ url_for('newCategory') }}"><i class="far fa-plus-square"></i> New Category</a>
-</li>
-{% endblock %}
-
-{% block content %}
-<div class="row">
-    <div class="col-12">
-        <h1 class="text-center">Categories</h1>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='landing.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="content">
+            <div class="content-container">
+                <h1 class="content-title">Share your unique collection of curiosities</h1>
+                <p class="content-text">Catalogic helps you share your interests with collectors around the world, or explore and discover original collections.</p>
+                <div class="content-btns">
+                    <a href="{{ url_for('showLogin') }}">
+                        <button class="btn btn-login" type="button">Sign in to Share</button>
+                    </a>
+                    <p class="btns-sep">or</p>
+                    <a href="{{ url_for('showHomepage') }}">
+                        <button class="btn btn-discover">Discover Collections
+                            <div class="svg-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M10 7H2v6h8v5l8-8-8-8v5z"/></svg>
+                            </div>
+                        </button>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="hero hero-img"></div>
     </div>
-</div>
-
-<div class="row mt-4">
-    {% for i in categories %}
-    <div class="col-md-6 col-12 list-group">
-        <a class="list-group-item list-group-item-action" href={{ url_for('showItems', category_id = i.id) }}>{{ i.name }}</a>
-    </div>
-    {% endfor %}
-</div>
-{% endblock %}
+</body>
+</html>

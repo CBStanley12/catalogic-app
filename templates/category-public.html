@@ -5,7 +5,7 @@
     <h2 class="main_title">c/{{ category.name.lower() }}</h2>
 
     {% for collection, user in collections %}
-    <a href="">  <!-- Link to showCategory  url_for('showCollection', collection_id = collection.id) -->
+    <a href={{ url_for('showCollection', category_name = category.name, collection_id = collection.id) }}>
         <div class="main_card">
             <div class="main_card-title">
                 {{ collection.name }}
