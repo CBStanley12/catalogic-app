@@ -12,7 +12,13 @@
             </div>
 
             <div class="main_card-info">
-                <a href="" class="main_card-info-link info-link-category">{{ category.name }}</a>  -  Created by <a href="" class="main_card-info-link">{{ user.name }}</a>
+                <a href={{ url_for('showCategory', category_name = category.name.lower()) }} class="main_card-info-link info-link-category">
+                    {{ category.name }}
+                </a>
+                      -  Created by
+                <a href="" class="main_card-info-link">
+                    {{ user.name }}
+                </a>
             </div>
         </div>
     </a>
