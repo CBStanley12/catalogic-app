@@ -1,21 +1,29 @@
 {% extends "base.html" %}
-{% block title %}c/{{ category.name.lower() }}{% endblock %}
+{% block title %}{{ category.name }}{% endblock %}
 
 {% block main %}
-    <h2 class="main_title">c/{{ category.name.lower() }}</h2>
+    <h2 class="main_title">{{ category.name }}</h2>
 
-    {% for collection, user in collections %}
-    <a href={{ url_for('showCollection', category_name = category.name, collection_id = collection.id) }}>
-        <div class="main_card">
-            <div class="main_card-title">
-                {{ collection.name }}
-            </div>
+    {% if not collection %}
 
-            <div class="main_card-info">
-                Created by <a href="" class="main_card-info-link">{{ user.name }}</a>
+        <h4>This category doesn't have any collections. Be the first to add one!</h4>
+
+    {% else %}
+
+        {% for collection, user in collections %}
+        <a href={{ url_for('showCollection', category_name = category.name, collection_id = collection.id) }}>
+            <div class="main_card">
+                <div class="main_card-title">
+                    {{ collection.name }}
+                </div>
+
+                <div class="main_card-info">
+                    Created by <a href="" class="main_card-info-link">{{ user.name }}</a>
+                </div>
             </div>
-        </div>
-    </a>
-    {% endfor %}
+        </a>
+        {% endfor %}
+
+    {% endif %}
 
 {% endblock %}
