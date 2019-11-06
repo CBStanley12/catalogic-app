@@ -162,6 +162,17 @@ def showHomepage():
         user = getUserInfo(login_session['user_id']) 
         return render_template('homepage.html', categories = categories, collections = collections, user = user)
 
+@app.route('/c/<category_name>')
+def showCategory(category_name):
+    categories = session.query(Category).order_by(Category.name)
+    category = session.query(Category).filter_by(name = category_name.title()).one()
+    collections = session.query(Collection, User).filter_by(category_id = category.id).join(User).order_by(Collection.name).all()
+    if 'username' not in login_session:
+        return render_template('category-public.html', categories = categories, category = category, collections = collections)
+    else:
+        user = getUserInfo(login_session['user_id'])
+        return render_template('category.html', categories = categories, category = category, collections = collections, user = user)
+
 # Add new categories
 @app.route('/categories/new/', methods=['GET', 'POST'])
 def newCategory():

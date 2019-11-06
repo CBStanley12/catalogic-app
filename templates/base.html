@@ -33,7 +33,40 @@
         </header>
 
         <aside class="sidebar">
-            {% block sidebar %}{% endblock %}
+            <h3 class="sidebar_title">Categories</h3>
+            {% if not category %}
+                <a class="sidebar_link active" id="all" href={{ url_for('showHomepage') }}>
+                    All Categories
+                </a>
+
+                {% for item in categories %}
+                <a class="sidebar_link"
+                    id={{ item.name }}
+                    href={{ url_for('showCategory', category_name = item.name.lower()) }}>
+                    {{ item.name }}
+                </a>
+                {% endfor %}
+            {% else %}
+                <a class="sidebar_link" id="all" href={{ url_for('showHomepage') }}>
+                    All Categories
+                </a>
+
+                {% for item in categories %}
+                    {% if item.name == category.name %}
+                    <a class="sidebar_link active"
+                        id={{ item.name }}
+                        href={{ url_for('showCategory', category_name = item.name.lower()) }}>
+                        {{ item.name }}
+                    </a>
+                    {% else %}
+                    <a class="sidebar_link"
+                        id={{ item.name }}
+                        href={{ url_for('showCategory', category_name = item.name.lower()) }}>
+                        {{ item.name }}
+                    </a>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
         </aside>
 
         <main class="main">
