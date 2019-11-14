@@ -16,8 +16,10 @@
 <body>
 
     <div class="container-grid">
-
         <header class="header container-flex">
+            <svg class="btn-open" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/>
+            </svg>
             <a class="header_logo" href={{ url_for('showHomepage') }} title="Home">CATALOGIC</a>
             <nav class="header_nav">
                 {% if 'username' not in session %}
@@ -32,34 +34,37 @@
             </nav>
         </header>
 
-        <aside class="sidebar">
-            <h3 class="sidebar_title">Categories</h3>
+        <aside class="sidebar sidebar-grid">
+            <div class="sidebar_head">
+                <div class="head-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M10 8.586L2.929 1.515 1.515 2.929 8.586 10l-7.071 7.071 1.414 1.414L10 11.414l7.071 7.071 1.414-1.414L11.414 10l7.071-7.071-1.414-1.414L10 8.586z"/></svg>
+                </div>
+                <h3 class="head-title">CATALOGIC</h3>
+            </div>
+            <nav class="sidebar_nav">
             {% if not category %}
-                <a class="sidebar_link active" id="all" href={{ url_for('showHomepage') }}>
-                    All Categories
-                </a>
-
+                <a class="nav-link active" id="all" href={{ url_for('showHomepage') }}>All Categories</a>
                 {% for item in categories %}
-                <a class="sidebar_link"
+                <a class="nav-link"
                     id={{ item.name }}
                     href={{ url_for('showCategory', category_name = item.name.lower()) }}>
                     {{ item.name }}
                 </a>
                 {% endfor %}
             {% else %}
-                <a class="sidebar_link" id="all" href={{ url_for('showHomepage') }}>
+                <a class="nav-link" id="all" href={{ url_for('showHomepage') }}>
                     All Categories
                 </a>
 
                 {% for item in categories %}
                     {% if item.name == category.name %}
-                    <a class="sidebar_link active"
+                    <a class="nav-link active"
                         id={{ item.name }}
                         href={{ url_for('showCategory', category_name = item.name.lower()) }}>
                         {{ item.name }}
                     </a>
                     {% else %}
-                    <a class="sidebar_link"
+                    <a class="nav-link"
                         id={{ item.name }}
                         href={{ url_for('showCategory', category_name = item.name.lower()) }}>
                         {{ item.name }}
@@ -67,6 +72,10 @@
                     {% endif %}
                 {% endfor %}
             {% endif %}
+            </nav>
+            <div class="sidebar_foot">
+
+            </div>
         </aside>
 
         <main class="main">
@@ -81,6 +90,7 @@
 
     </div>
 
+    <script type="text/javascript" src="{{ url_for('static', filename='base.js') }}"></script>
     {% block script %}{% endblock %}
 
 </body>

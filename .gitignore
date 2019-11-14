@@ -3,3 +3,5 @@ item_catalog.db
 client_secrets.json
 .vscode/settings.json
 database_setup.pyc
+.DS_Store
+static/.DS_Store

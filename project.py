@@ -154,6 +154,9 @@ def showLandingPage():
 @app.route('/c')
 @app.route('/c/all')
 def showHomepage():
+    DBSession = sessionmaker(bind=engine)
+    session = DBSession()
+
     categories = session.query(Category).order_by(Category.name)
     collections = session.query(Collection, Category, User).join(Category, User).order_by(Collection.name).all()
     if 'username' not in login_session:
@@ -165,6 +168,9 @@ def showHomepage():
 # Display category page - view collections for a specific category
 @app.route('/c/<category_name>')
 def showCategory(category_name):
+    DBSession = sessionmaker(bind=engine)
+    session = DBSession()
+
     categories = session.query(Category).order_by(Category.name)
     category = session.query(Category).filter_by(name = category_name.title()).one()
     collections = session.query(Collection, User).filter_by(category_id = category.id).join(User).order_by(Collection.name).all()
