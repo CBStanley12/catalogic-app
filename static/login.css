@@ -1,4 +1,4 @@
-@import "main.css";
+@import "base.css";
 
 .bg-blue--light {
     background-color: var(--clr-blue--glacier-20);

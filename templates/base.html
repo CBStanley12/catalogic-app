@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{% block title %}{% endblock %}</title>
     
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='base.css') }}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
     {% block head %}{% endblock %} 
@@ -14,81 +14,35 @@
 </head>
 
 <body>
-
-    <div class="container-grid">
-        <header class="header container-flex">
-            <svg class="btn-open" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/>
-            </svg>
-            <a class="header_logo" href={{ url_for('showHomepage') }} title="Home">CATALOGIC</a>
-            <nav class="header_nav">
-                {% if 'username' not in session %}
-                <a class="header_nav-btn" href={{ url_for('showLogin') }}>
-                    Sign in
-                </a>
-                {% else %}
-                <a class="header_nav-link" href={{ url_for('disconnect') }}>
-                    <img class="header_nav-user" src="{{ user.picture }}" alt="User Profile Photo">
-                </a>
-                {% endif %}
-            </nav>
-        </header>
-
-        <aside class="sidebar sidebar-grid">
-            <div class="sidebar_head">
-                <div class="head-btn">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M10 8.586L2.929 1.515 1.515 2.929 8.586 10l-7.071 7.071 1.414 1.414L10 11.414l7.071 7.071 1.414-1.414L11.414 10l7.071-7.071-1.414-1.414L10 8.586z"/></svg>
-                </div>
-                <h3 class="head-title">CATALOGIC</h3>
-            </div>
-            <nav class="sidebar_nav">
-            {% if not category %}
-                <a class="nav-link active" id="all" href={{ url_for('showHomepage') }}>All Categories</a>
-                {% for item in categories %}
-                <a class="nav-link"
-                    id={{ item.name }}
-                    href={{ url_for('showCategory', category_name = item.name.lower()) }}>
+    <!-- Sidebar -->
+    <aside class='m-sidebar l-grid u-fixed u-bg-white'>
+        <div class='c-sidebar-head [ u-col_12/12 u-row_1/12 ]'></div>
+        <nav class='c-sidebar-nav [ u-col_12/12 u-row_9/12 ] [ l-flex u-flex_col u-flex_cross-c ]'>
+            <a href='{{ url_for('showHomepage') }}' class='c-sidebar-nav-link' id='all' data-active='is-active'>All Collections</a>
+            {% for item in categories %}
+                <a href='{{ url_for('showCategory', category_name = item.name.lower()) }}' class='c-sidebar-nav-link' id='{{ item.name }}'>
                     {{ item.name }}
                 </a>
-                {% endfor %}
-            {% else %}
-                <a class="nav-link" id="all" href={{ url_for('showHomepage') }}>
-                    All Categories
-                </a>
+            {% endfor %}
+        </nav>
+        <div class='c-sidebar-foot [ u-col_12/12 u-row_2/12 ]'>
 
-                {% for item in categories %}
-                    {% if item.name == category.name %}
-                    <a class="nav-link active"
-                        id={{ item.name }}
-                        href={{ url_for('showCategory', category_name = item.name.lower()) }}>
-                        {{ item.name }}
-                    </a>
-                    {% else %}
-                    <a class="nav-link"
-                        id={{ item.name }}
-                        href={{ url_for('showCategory', category_name = item.name.lower()) }}>
-                        {{ item.name }}
-                    </a>
-                    {% endif %}
-                {% endfor %}
-            {% endif %}
-            </nav>
-            <div class="sidebar_foot">
+        </div>
+    </aside>
+    <!-- Main -->
+    <main class='m-main [ u-relative ]'>
+        <header class=''>
 
-            </div>
-        </aside>
+        </header>
 
-        <main class="main">
-            {% block main %}{% endblock %}
-        </main>
-        
-        <footer class="footer">
-            <p class="footer_copy">
-                &copy; 2019 by Christopher Stanley
-            </p>
-        </footer>
-
-    </div>
+        {% block main %}{% endblock %}
+    </main>
+    <!-- Footer -->
+    <footer class="footer">
+        <p class="footer_copy">
+            &copy; 2019 by Christopher Stanley
+        </p>
+    </footer>
 
     <script type="text/javascript" src="{{ url_for('static', filename='base.js') }}"></script>
     {% block script %}{% endblock %}
