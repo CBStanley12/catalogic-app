@@ -1,0 +1,57 @@
+/* LAYOUT CLASSES */
+/* Layout - Grid */
+.l-grid {
+  display: grid;
+  grid: repeat(12, 1fr)/repeat(12, 1fr);
+}
+
+/* Layout - Grid Columns and Rows */
+.row-1\/12 {
+  grid-row: span 1;
+}
+
+.row-2\/12 {
+  grid-row: span 2;
+}
+
+.row-3\/12 {
+  grid-row: span 3;
+}
+
+.row-4\/12 {
+  grid-row: span 4;
+}
+
+.row-5\/12 {
+  grid-row: span 5;
+}
+
+.row-6\/12 {
+  grid-row: span 6;
+}
+
+.row-7\/12 {
+  grid-row: span 7;
+}
+
+.row-8\/12 {
+  grid-row: span 8;
+}
+
+.row-9\/12 {
+  grid-row: span 9;
+}
+
+.row-10\/12 {
+  grid-row: span 10;
+}
+
+.row-11\/12 {
+  grid-row: span 11;
+}
+
+.row-12\/12 {
+  grid-row: span 12;
+}
+
+/*# sourceMappingURL=layout.css.map */

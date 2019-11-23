@@ -5,3 +5,4 @@ client_secrets.json
 database_setup.pyc
 .DS_Store
 static/.DS_Store
+static/public/*.css.map

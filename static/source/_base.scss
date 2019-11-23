@@ -1,0 +1,31 @@
+/*
+** TABLE OF CONTENTS
+** 
+** VARIABLES
+** Color Variables......................
+** Brand Color Variables................
+** Font Variables.......................
+*/
+
+
+
+/* VARIABLES */
+
+/* || Color Variables */
+$blue: #1A4A9C;
+$darkBlue: #17223A;
+$lightBlue: #5BB1D0;
+$glacierBlue: #6EA6C5;
+$red: #E40C2B; 
+$yellow: #EBA63F;
+$green: #438945;
+$gray: rgba(58, 58, 60, 1);
+
+/* || Brand Color Variables */
+$color-primary: $blue;
+$color-secondary: $darkBlue;
+$color-accent: $glacierBlue;
+$color-tertiary: $gray;
+
+/* || Font Variables */
+$font-primary: "Montserrat";

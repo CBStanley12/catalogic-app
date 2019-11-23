@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{% block title %}{% endblock %}</title>
-    
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='base.css') }}">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
-    {% block head %}{% endblock %} 
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700,800,900&display=swap">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='base.css') }}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+    {% block head %}{% endblock %}
 
 </head>
 
@@ -18,11 +21,13 @@
     <aside class='m-sidebar l-grid u-fixed u-bg-white'>
         <div class='c-sidebar-head [ u-col_12/12 u-row_1/12 ]'></div>
         <nav class='c-sidebar-nav [ u-col_12/12 u-row_9/12 ] [ l-flex u-flex_col u-flex_cross-c ]'>
-            <a href='{{ url_for('showHomepage') }}' class='c-sidebar-nav-link' id='all' data-active='is-active'>All Collections</a>
+            <a href='{{ url_for('showHomepage') }}' class='c-sidebar-nav-link' id='all' data-active='is-active'>All
+                Collections</a>
             {% for item in categories %}
-                <a href='{{ url_for('showCategory', category_name = item.name.lower()) }}' class='c-sidebar-nav-link' id='{{ item.name }}'>
-                    {{ item.name }}
-                </a>
+            <a href='{{ url_for('showCategory', category_name = item.name.lower()) }}' class='c-sidebar-nav-link'
+                id='{{ item.name }}'>
+                {{ item.name }}
+            </a>
             {% endfor %}
         </nav>
         <div class='c-sidebar-foot [ u-col_12/12 u-row_2/12 ]'>
@@ -48,4 +53,5 @@
     {% block script %}{% endblock %}
 
 </body>
+
 </html>

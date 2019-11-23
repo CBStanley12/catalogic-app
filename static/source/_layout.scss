@@ -1,0 +1,47 @@
+/*
+** TABLE OF CONTENTS
+** 
+** LAYOUTS
+** Grid................Grid layouts
+** Flex................Flex Layouts
+*/
+
+
+
+/*--------------------*\
+    GRID LAYOUT
+\*--------------------*/
+
+$gridSettings: (
+    columns: 12,
+    rows: 12
+);
+
+/* Layout - Grid */
+.l-grid {
+    display: grid;
+    grid: repeat(map-get($gridSettings, "rows"), 1fr) / repeat(map-get($gridSettings, "columns"), 1fr);
+}
+
+/* Layout - Grid Columns and Rows */
+@mixin renderGrid($gridSettings) {
+    $i: 1;
+    $columns: map-get($gridSettings, "columns");
+    $rows: map-get($gridSettings, "rows");
+
+    @while $i <= $rows {
+        .row-#{$i}\/#{$rows} {
+            grid-row: span $i;
+        }
+        $i: $i + 1;
+    }
+
+    @while $i <= $columns {
+        .col-#{$i}\/#{$columns} {
+            grid-column: span $i;
+        }
+        $i: $i + 1;
+    }
+}
+
+@include renderGrid($gridSettings);
