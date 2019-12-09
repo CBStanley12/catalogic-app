@@ -1,141 +1,49 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,700,800,900&display=swap');
-
-:root {
-    --clr-blue--dark: #17223A;
-    --clr-blue--dark-30: rgba(23, 34, 58, 0.3);
-    --clr-blue: #1A4A9C;
-    --clr-blue--20: rgba(26, 74, 156, 0.2);
-    --clr-blue--light: #5BB1D0;
-    --clr-blue--glacier: #6EA6C5;
-    --clr-blue--glacier-20: rgba(110, 166, 197, 0.2);
-    --clr-red: #E40C2B; 
-    --clr-yellow: #EBA63F;
-    --clr-green: #438945;
-    --clr-gray: rgba(58, 58, 60, 1);
+/*
+**  
+**  TABLE OF CONTENTS
+**  
+**  VARIABLES
+**      Color Variables......................Global color variables
+**      Brand Color Variables................Primary, secondary, accent, and tertiary color variables
+**      Font Variables.......................Global fonts
+**
+**  BASE
+**      Resets...............................Resetting default styles
+**      Global...............................Global default styles
+**
+*/
+/* || VARIABLES || */
+/* Color Variables */
+/* Brand Color Variables */
+/* Font Variables */
+/* || BASE || */
+/* Resets */
+html {
+  box-sizing: border-box;
 }
 
-* { box-sizing: border-box; }
+*, *::before, *::after {
+  box-sizing: inherit;
+}
 
+h1, h2, h3, h4, p {
+  margin: 0;
+  padding: 0;
+}
+
+/* Global */
 a {
-    color: inherit;
-    text-decoration: none;
+  color: #1A4A9C;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
 }
 
 html, body {
-    color: var(--clr-blue);
-    font-family: 'Montserrat', sans-serif;
-    font-size: 100%;
-    font-weight: 400;
-    height: 100%;
-    margin: 0;
-    overflow-x: hidden;
-    width: 100%;
+  color: #3a3a3c;
+  font: 100%/1.2rem "Montserrat";
+  font-size: 100%;
 }
 
-/* Module - Main */
-.m-main {
-    height: 100%;
-    width: 100%;
-}
-
-/* Module - Sidebar */
-.m-sidebar {
-    border-right: 1px solid var(--clr-blue--20);
-    height: 100vh;
-    left: 0;
-    overflow-x: hidden;
-    top: 0;
-    transition: 0.5s;
-    width: 80vw;
-    z-index: 1;
-}
-
-/* Component - Sidebar Head */
-.c-sidebar-head {
-    background-color: var(--clr-blue);
-}
-
-/* Component - Sidebar Nav */
-.c-sidebar-nav {
-    height: 100%;
-    justify-content: space-between;
-    padding: 0.5rem 1rem;
-    width: 100%;
-}
-
-/* Element - Sidebar Nav Link */
-.c-sidebar-nav-link {
-    border-bottom: 1px solid var(--clr-blue--20);
-    display: block;
-    font-size: 1.2rem;
-    font-weight: 300;
-    transition: 0.3s;
-    white-space: nowrap;
-    width: 100%;
-}
-
-/* State - Active Sidebar Nav Link */
-.c-sidebar-nav-link[data-active='is-active'] {
-    font-weight: 700;
-}
-
-.c-sidebar-nav-link:hover {
-    background-color: var(--clr-blue--20);
-}
-
-/* Component - Sidebar Info */
-.c-sidebar-foot {
-    background-color: var(--clr-blue--20);
-}
-
-/* Layout - Flex */
-.l-flex { display: flex; }
-
-/* Layout Utility - Flex Layout */
-.u-flex_col { flex-direction: column; }
-.u-flex_main-c { justify-content: center; }
-.u-flex_cross-c { align-items: center; }
-
-/* Layout - Grid */
-.l-grid {
-    /* Grid with twelve columns and rows */
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    grid-template-rows: repeat(12, 1fr);
-}
-
-/* Layout Utility - Grid Columns */
-.u-col_1\/12 { grid-column: span 1; }
-.u-col_2\/12 { grid-column: span 2; }
-.u-col_3\/12 { grid-column: span 3; }
-.u-col_4\/12 { grid-column: span 4; }
-.u-col_5\/12 { grid-column: span 5; }
-.u-col_6\/12 { grid-column: span 6; }
-.u-col_7\/12 { grid-column: span 7; }
-.u-col_8\/12 { grid-column: span 8; }
-.u-col_9\/12 { grid-column: span 9; }
-.u-col_10\/12 { grid-column: span 10; }
-.u-col_11\/12 { grid-column: span 11; }
-.u-col_12\/12 { grid-column: span 12; }
-
-/* Layout Utility - Grid Rows */
-.u-row_1\/12 { grid-row: span 1; }
-.u-row_2\/12 { grid-row: span 2; }
-.u-row_3\/12 { grid-row: span 3; }
-.u-row_4\/12 { grid-row: span 4; }
-.u-row_5\/12 { grid-row: span 5; }
-.u-row_6\/12 { grid-row: span 6; }
-.u-row_7\/12 { grid-row: span 7; }
-.u-row_8\/12 { grid-row: span 8; }
-.u-row_9\/12 { grid-row: span 9; }
-.u-row_10\/12 { grid-row: span 10; }
-.u-row_11\/12 { grid-row: span 11; }
-.u-row_12\/12 { grid-row: span 12; }
-
-/* Utility - Background Colors */
-.u-bg-white { background-color: white; }
-
-/* Utility - Positioning */
-.u-fixed { position: fixed; }
-.u-sticky { position: sticky; }
-.u-relative { position: relative; }
+/*# sourceMappingURL=base.css.map */
