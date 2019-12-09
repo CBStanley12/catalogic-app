@@ -1,0 +1,173 @@
+/*
+**  TABLE OF CONTENTS
+**  
+**  BASE.........................Import contents of Base
+**  LAYOUT.......................Import contents of Layout
+**  COMPONENTS...................Import contents of Components
+*/
+/* || BASE || */
+/*
+**  
+**  TABLE OF CONTENTS
+**  
+**  VARIABLES
+**      Color Variables......................Global color variables
+**      Brand Color Variables................Primary, secondary, accent, and tertiary color variables
+**      Font Variables.......................Global fonts
+**
+**  BASE
+**      Resets...............................Resetting default styles
+**      Global...............................Global default styles
+**
+*/
+/* || VARIABLES || */
+/* Color Variables */
+/* Brand Color Variables */
+/* Font Variables */
+/* || BASE || */
+/* Resets */
+html {
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+h1, h2, h3, h4, p {
+  margin: 0;
+  padding: 0;
+}
+
+/* Global */
+a {
+  color: #1A4A9C;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+html, body {
+  color: #3a3a3c;
+  font: 100%/1.2rem "Montserrat";
+  font-size: 100%;
+}
+
+/* || LAYOUT || */
+/*
+** TABLE OF CONTENTS
+** 
+** LAYOUTS
+** Grid................Grid layouts
+** Flex................Flex Layouts
+*/
+/*--------------------*\
+    GRID LAYOUT
+\*--------------------*/
+/* Layout - Grid */
+.l-grid {
+  display: grid;
+  grid: repeat(12, 1fr)/repeat(12, 1fr);
+}
+
+/* Layout - Grid Columns and Rows */
+.row-1\/12 {
+  grid-row: span 1;
+}
+
+.row-2\/12 {
+  grid-row: span 2;
+}
+
+.row-3\/12 {
+  grid-row: span 3;
+}
+
+.row-4\/12 {
+  grid-row: span 4;
+}
+
+.row-5\/12 {
+  grid-row: span 5;
+}
+
+.row-6\/12 {
+  grid-row: span 6;
+}
+
+.row-7\/12 {
+  grid-row: span 7;
+}
+
+.row-8\/12 {
+  grid-row: span 8;
+}
+
+.row-9\/12 {
+  grid-row: span 9;
+}
+
+.row-10\/12 {
+  grid-row: span 10;
+}
+
+.row-11\/12 {
+  grid-row: span 11;
+}
+
+.row-12\/12 {
+  grid-row: span 12;
+}
+
+.col-1\/12 {
+  grid-column: span 1;
+}
+
+.col-2\/12 {
+  grid-column: span 2;
+}
+
+.col-3\/12 {
+  grid-column: span 3;
+}
+
+.col-4\/12 {
+  grid-column: span 4;
+}
+
+.col-5\/12 {
+  grid-column: span 5;
+}
+
+.col-6\/12 {
+  grid-column: span 6;
+}
+
+.col-7\/12 {
+  grid-column: span 7;
+}
+
+.col-8\/12 {
+  grid-column: span 8;
+}
+
+.col-9\/12 {
+  grid-column: span 9;
+}
+
+.col-10\/12 {
+  grid-column: span 10;
+}
+
+.col-11\/12 {
+  grid-column: span 11;
+}
+
+.col-12\/12 {
+  grid-column: span 12;
+}
+
+/* || COMPONENTS || */
+
+/*# sourceMappingURL=main.css.map */

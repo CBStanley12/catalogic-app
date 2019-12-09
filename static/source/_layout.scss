@@ -25,22 +25,23 @@ $gridSettings: (
 
 /* Layout - Grid Columns and Rows */
 @mixin renderGrid($gridSettings) {
-    $i: 1;
+    $x: 1;
+    $y: 1;
     $columns: map-get($gridSettings, "columns");
     $rows: map-get($gridSettings, "rows");
 
-    @while $i <= $rows {
-        .row-#{$i}\/#{$rows} {
-            grid-row: span $i;
+    @while $x <= $rows {
+        .row-#{$x}\/#{$rows} {
+            grid-row: span $x;
         }
-        $i: $i + 1;
+        $x: $x + 1;
     }
 
-    @while $i <= $columns {
-        .col-#{$i}\/#{$columns} {
-            grid-column: span $i;
+    @while $y <= $columns {
+        .col-#{$y}\/#{$columns} {
+            grid-column: span $y;
         }
-        $i: $i + 1;
+        $y: $y + 1;
     }
 }
 
