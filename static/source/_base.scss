@@ -49,6 +49,7 @@ body {
     color: $color-tertiary;
     font-family: $font-primary;
     font-size: 16px;
+    height: 100%;
     margin: 0;
 }
 
@@ -69,4 +70,9 @@ a {
 button {
     border: none;
     cursor: pointer;
+}
+
+img {
+    height: auto;
+    max-width: 100%;
 }

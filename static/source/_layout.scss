@@ -1,26 +1,31 @@
 /*
-** TABLE OF CONTENTS
 **
-** LAYOUTS
-** Grid................Grid layouts
-** Flex................Flex Layouts
+**  TABLE OF CONTENTS
+**
+**  CONTAINERS
+**      Grid Container.......................Standard grid container
+**      Flex Container.......................Standard flex container
+**
+**  LAYOUTS
+**      Landing Page.........................Layouts for the landing page
+**
 */
 
 
 
-/*--------------------*\
-    GRID LAYOUT
-\*--------------------*/
+/* || CONTAINERS || */
 
+/* Grid Container */
 $gridSettings: (
-    columns: 12,
-    rows: 12
+    columns: 24,
+    rows: 24
 );
 
 /* Layout - Grid */
 .l-grid {
     display: grid;
     grid: repeat(map-get($gridSettings, "rows"), 1fr) / repeat(map-get($gridSettings, "columns"), 1fr);
+    height: 100%;
 }
 
 /* Layout - Grid Columns and Rows */
@@ -46,3 +51,24 @@ $gridSettings: (
 }
 
 @include renderGrid($gridSettings);
+
+
+
+
+/* || LAYOUTS || */
+
+/* Landing Page */
+.p-landing {
+    .layout-content {
+        grid-area: 3 / 2 / 23 / 15;
+    }
+
+    .layout-hero {
+        background-image: url("../assets/images/karen-vardazaryan-JBrfoV-BZts-unsplash.jpg");
+        background-color: #cccccc;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        grid-area: 1 / 16 / last-line / last-line;
+    }
+}
